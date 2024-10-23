@@ -8,6 +8,7 @@ defmodule LearnApi.Users.User do
     field :gender, :string
     field :biography, :string
     field :account_id, :id
+    belongs_to :account, LearnApi.Accounts.Account
 
     timestamps(type: :utc_datetime)
   end
@@ -16,6 +17,6 @@ defmodule LearnApi.Users.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:full_name, :gender, :biography])
-    |> validate_required([:full_name, :gender, :biography])
+    |> validate_required([:account_id])
   end
 end

@@ -7,11 +7,11 @@ defmodule LearnApi.Repo.Migrations.CreateUsers do
       add :full_name, :string
       add :gender, :string
       add :biography, :text
-      add :account_id, references(:accounts, on_delete: :nothing)
+      add :account_id, references(:accounts, on_delete: :delete_all)
 
       timestamps(type: :utc_datetime)
     end
 
-    create index(:users, [:account_id])
+    create index(:users, [:account_id, :full_name])
   end
 end
